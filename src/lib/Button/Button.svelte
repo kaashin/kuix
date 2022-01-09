@@ -1,84 +1,117 @@
 <script>
+	import LoadingSpinners from '../Loaders/LoadingSpinners.svelte';
+
 	export let size = 'sm';
 	export let color = '';
 	export let bgColor = '';
 	export let type = '';
 	export let state = '';
-	export let twClasses = '';
-
-	let sizeClass = '';
-	let bgColorClass = '';
-	let classString = '';
-	let borderColor = 'border-transparent';
-	let primaryColor = 'red';
-	let twColor = primaryColor;
-	let twBgColor = primaryColor;
-	let twColorWeight = 600;
-	let twHoverWeight = 700;
-	let textColor = 'text-white';
-
-	switch (size) {
-		case 'sm':
-			sizeClass = 'px-2.5 py-1.5 text-xs rounded';
-			break;
-		case 'md':
-			sizeClass = 'px-3 py-2 text-sm leading-4 rounded-md';
-			break;
-		case 'lg':
-			sizeClass = 'px-4 py-2 text-sm rounded-md';
-			break;
-		case 'xl':
-			sizeClass = 'px-4 py-2 rounded-md';
-			break;
-		case '2xl':
-			sizeClass = 'px-6 py-3 rounded-md';
-			break;
-		default:
-			sizeClass = '';
-			break;
-	}
-
-	// bgColorClass = 'bg-indigo-600';
-
-	switch (state) {
-		case 'info':
-			twColor = 'blue';
-			break;
-		case 'success':
-			twColor = 'green';
-			break;
-		case 'warning':
-			twColor = 'orange';
-			break;
-		case 'error':
-			twColor = 'red';
-			break;
-	}
-
-	// Handle button type
-	if (type === 'secondary') {
-		borderColor = `border-${twColor}-500`;
-		twBgColor = 'transparent';
-		textColor = `text-${twColor}-${twColorWeight}`;
-		twClasses = `hover:text-white ${twClasses}`;
-	}
-
-	if (['inherit', 'current', 'transparent', 'black', 'white'].includes(twBgColor)) {
-		bgColorClass = `bg-${twColor}`;
-	} else {
-		bgColorClass = `bg-${twColor}-${twColorWeight}`;
-	}
-
-	// If there is any use override of the colors
-	if (bgColor) {
-		bgColorClass = bgColor;
-	}
-	if (color) {
-		textColor = color;
-	}
-
-	classString = `inline-flex items-center ${sizeClass} border ${borderColor} font-medium shadow-sm ${textColor} ${bgColorClass} hover:bg-${twColor}-${twHoverWeight} focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ${twClasses} transition hover:ease-in hover:duration-300`;
-	console.log({ classString });
+	export let addClass = '';
+	export let rounded = true;
+	export let pill = false;
+	export let disabled = false;
+	export let href = '';
+	export let htmlType = '';
+	export let target = '';
+	export let onClick = null;
+	export let loading = false;
 </script>
 
-<button type="button" class={classString}><slot /></button>
+<button
+	type="button"
+	class="inline-flex items-center border border-transparent font-medium shadow-sm text-white bg-indigo-600 hover:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 hover:text-white transition hover:ease-in hover:duration-300 size_{size} state_{state} {addClass
+		? addClass
+		: ''}"
+	class:secondary={type === 'secondary'}
+	class:tertiary={type === 'tertiary'}
+	class:dashed={type === 'dashed'}
+	class:pill
+	class:notRounded={rounded === false}
+	class:disabled
+	class:loading
+	class:disabledSecondary={type === 'secondary' && disabled === true}
+	class:disabledTertiary={type === 'tertiary' && disabled === true}
+	class:disabledDashed={type === 'dashed' && disabled === true}
+	{onClick}
+	{disabled}
+>
+	{#if loading}
+		<LoadingSpinners {size} />
+	{/if}
+	<slot />
+</button>
+
+<style>
+	.size_sm {
+		@apply px-2.5 py-1.5 text-xs rounded gap-1;
+	}
+	.size_md {
+		@apply px-3 py-2 text-sm leading-4 rounded-md gap-1.5;
+	}
+	.size_lg {
+		@apply px-4 py-2 text-sm rounded-md gap-2;
+	}
+	.size_xl {
+		@apply px-4 py-2 rounded-md gap-2;
+	}
+	.size_2xl {
+		@apply px-6 py-3 rounded-md gap-2;
+	}
+	.state_info {
+		@apply bg-blue-600;
+	}
+	.state_success {
+		@apply bg-green-600;
+	}
+	.state_warning {
+		@apply bg-orange-600;
+	}
+	.state_error {
+		@apply bg-red-600;
+	}
+	.secondary {
+		@apply bg-indigo-100 text-indigo-700;
+	}
+	.secondary:hover {
+		@apply bg-indigo-200;
+	}
+	.tertiary {
+		@apply bg-white border border-indigo-600 text-indigo-600;
+	}
+	.tertiary:hover {
+		@apply bg-indigo-600 border border-indigo-600 text-white;
+	}
+	.dashed {
+		@apply border border-indigo-600 border-dashed bg-transparent text-indigo-600;
+	}
+	.dashed:hover {
+		@apply border border-indigo-600 bg-indigo-600 text-white;
+	}
+	.pill {
+		@apply rounded-full;
+	}
+	.notRounded {
+		@apply rounded-none;
+	}
+	.disabled {
+		@apply bg-gray-600;
+	}
+	.disabledSecondary {
+		@apply bg-gray-200 text-gray-900;
+	}
+	.disabledSecondary:hover {
+		@apply bg-gray-200 text-gray-900;
+	}
+	.disabledTertiary {
+		@apply bg-white border border-gray-400 text-gray-400;
+	}
+	.disabledTertiary:hover {
+		@apply bg-white border border-gray-400 text-gray-400;
+	}
+	.disabledDashed {
+		@apply bg-transparent border border-gray-400 border-dashed text-gray-400;
+	}
+	.disabledDashed:hover {
+		@apply bg-transparent border border-gray-400 border-dashed text-gray-400;
+	}
+</style>
