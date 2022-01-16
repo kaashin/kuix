@@ -35,7 +35,8 @@
 	class:disabledTertiary={type === 'tertiary' && disabled === true}
 	class:disabledDashed={type === 'dashed' && disabled === true}
 	{onClick}
-	{disabled}
+	disabled={disabled || loading}
+	style="{$$props.style || ''}"
 >
 	{#if loading}
 		<LoadingSpinners {size} />
@@ -108,24 +109,24 @@
 		@apply rounded-none;
 	}
 	.disabled {
-		@apply bg-gray-600;
+		@apply bg-gray-600 cursor-not-allowed;
 	}
 	.disabledSecondary {
-		@apply bg-gray-200 text-gray-900;
+		@apply bg-gray-200 text-gray-900 cursor-not-allowed; 
 	}
 	.disabledSecondary:hover {
-		@apply bg-gray-200 text-gray-900;
+		@apply bg-gray-200 text-gray-900 cursor-not-allowed;
 	}
 	.disabledTertiary {
-		@apply bg-white border border-gray-400 text-gray-400;
+		@apply bg-white border border-gray-400 text-gray-400 cursor-not-allowed;
 	}
 	.disabledTertiary:hover {
-		@apply bg-white border border-gray-400 text-gray-400;
+		@apply bg-white border border-gray-400 text-gray-400 cursor-not-allowed;
 	}
 	.disabledDashed {
-		@apply bg-transparent border border-gray-400 border-dashed text-gray-400;
+		@apply bg-transparent border border-gray-400 border-dashed text-gray-400 cursor-not-allowed;
 	}
 	.disabledDashed:hover {
-		@apply bg-transparent border border-gray-400 border-dashed text-gray-400;
+		@apply bg-transparent border border-gray-400 border-dashed text-gray-400 cursor-not-allowed;
 	}
 </style>
