@@ -15,13 +15,15 @@
 	export let target = '';
 	export let onClick = null;
 	export let loading = false;
+
 </script>
 
 <button
-	type="button"
-	class="inline-flex items-center border border-transparent font-medium shadow-sm text-white bg-indigo-600 hover:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 hover:text-white transition hover:ease-in hover:duration-300 size_{size} state_{state} {addClass
+	type="button"	
+	class="inline-flex items-center border border-transparent font-medium shadow-sm text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 hover:text-white transition hover:ease-in hover:duration-300 size_{size} state_{state} {addClass
 		? addClass
-		: ''}"
+		: ''} {$$props.class || ''}"
+	class:primary={type === 'primary'}
 	class:secondary={type === 'secondary'}
 	class:tertiary={type === 'tertiary'}
 	class:dashed={type === 'dashed'}
@@ -60,32 +62,44 @@
 	.state_info {
 		@apply bg-blue-600;
 	}
+	.state_info:hover {
+		@apply bg-blue-700;
+	}
 	.state_success {
 		@apply bg-green-600;
+	}
+	.state_success:hover {
+		@apply bg-green-700;
 	}
 	.state_warning {
 		@apply bg-orange-600;
 	}
+	.state_warning:hover {
+		@apply bg-orange-700;
+	}
 	.state_error {
 		@apply bg-red-600;
 	}
+	.state_error:hover {
+		@apply bg-red-700;
+	}
 	.secondary {
-		@apply bg-indigo-100 text-indigo-700;
+		@apply bg-primary-100 text-primary-700;
 	}
 	.secondary:hover {
-		@apply bg-indigo-200;
+		@apply bg-primary-200;
 	}
 	.tertiary {
-		@apply bg-white border border-indigo-600 text-indigo-600;
+		@apply bg-white border border-primary-600 text-primary-600;
 	}
 	.tertiary:hover {
-		@apply bg-indigo-600 border border-indigo-600 text-white;
+		@apply bg-primary-600 border border-primary-600 text-white;
 	}
 	.dashed {
-		@apply border border-indigo-600 border-dashed bg-transparent text-indigo-600;
+		@apply border border-primary-600 border-dashed bg-transparent text-primary-600;
 	}
 	.dashed:hover {
-		@apply border border-indigo-600 bg-indigo-600 text-white;
+		@apply border border-primary-600 bg-primary-600 text-white;
 	}
 	.pill {
 		@apply rounded-full;

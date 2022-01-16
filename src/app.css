@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+	--color-primary-h: 150;
+	--color-primary-s: 84%;
+	--color-primary-l: 29.4%;
+}
+
 @layer base {
 	h1,
 	h2,

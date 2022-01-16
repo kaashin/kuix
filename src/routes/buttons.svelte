@@ -1,6 +1,5 @@
 <script>
 	import Button from '$lib/Button';
-	import LoadingSpinners from '$lib/Loaders/LoadingSpinners.svelte';
 </script>
 
 <div>
@@ -24,7 +23,7 @@
 		<Button size="md" type="primary">Primary</Button>
 		<Button size="md" type="secondary">Secondary</Button>
 		<Button size="md" type="tertiary">Tertiary</Button>
-		<Button size="md" type="dashed">Tertiary</Button>
+		<Button size="md" type="dashed">Dashed</Button>
 	</div>
 	<div class="">
 		<h2 class="text-lg">Pill Buttons</h2>
@@ -51,7 +50,6 @@
 	</div>
 	<div class="text-lg">
 		<h2>Loading Buttons</h2>
-		<p class="text-sm">Under construction</p>
 		<Button size="sm" loading={true}>Loading</Button>
 		<Button size="md" loading={true}>Loading</Button>
 		<Button size="lg" loading={true}>Loading</Button>
@@ -60,8 +58,7 @@
 	</div>
 	<div class="">
 		<h2 class="text-lg">Class overrides</h2>
-		<Button size="md" addClass="bg-orange-500">Pink</Button>
-		<Button size="md" addClass="bg-blue-500">Blue</Button>
+		<Button size="md" class="bg-orange-900">Pink</Button>
+		<Button size="md" class="bg-blue-400">Blue</Button>
 	</div>
-	<LoadingSpinners />
 </div>

@@ -1,6 +1,6 @@
 {
 	"name": "kuix",
-	"version": "0.0.2",
+	"version": "0.0.6",
 	"scripts": {
 		"dev": "svelte-kit dev",
 		"build": "svelte-kit build",
@@ -11,7 +11,7 @@
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "next",
-		"@sveltejs/kit": "next",
+		"@sveltejs/kit": "^1.0.0-next.231",
 		"autoprefixer": "^10.4.1",
 		"postcss": "^8.4.5",
 		"prettier": "^2.4.1",
@@ -23,7 +23,7 @@
 		"typescript": "^4.5.4"
 	},
 	"exports": {
-		".": "./Kuix.svelte"
+		".": "./index.js"
 	},
 	"type": "module"
 }

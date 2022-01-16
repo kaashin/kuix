@@ -1,10 +1,14 @@
+const { getKuixProperties } = require('./src/lib/utils/kuixUtils.cjs')
+const kuixConfig = require('./kuix.config.cjs');
+console.log({kuixConfig})
+const kuix = getKuixProperties(kuixConfig);
+
 module.exports = {
 	content: ['./src/**/*.svelte'],
 	theme: {
 		extend: {
 			colors: {
-				primary: '#ebae64',
-				secondary: '#ed4b49'
+				primary: kuix.colors.primary
 			}
 		}
 	},
